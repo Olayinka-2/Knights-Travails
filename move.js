@@ -9,8 +9,7 @@ function knightMoves([x, y], size = 8) {
      .filter(([newX, newY]) => newX >= 0 && newX < size && newY >= 0 && newY < size);
  }
 
-function knightGame(start, target) {
-   let path = [];
+export default function knightGame(start, target) {
    let visited = Array.from({ length: 8 }, () => Array(8).fill(false));
    visited[start[0]][start[1]] = true;
    let queue = [[start, []]];
@@ -27,15 +26,9 @@ function knightGame(start, target) {
       newMoves.forEach(([newX, newY]) => {
          if(!visited[newX][newY]) {
             visited[newX][newY] = true;
-            queue.push([[newX, newY], newPath])
+            queue.push([[newX, newY], newPath]);
          }
       });
    }
    return null;
 }
-
-const start = [0, 0];
-const target = [7, 7];
-
-const shortestPath = knightGame(start, target);
-console.log(shortestPath);
